@@ -1,12 +1,8 @@
-import { IView } from "./view";
+import { IProductView } from "./productView";
 
-export interface IProductModalView extends IView {
-  id: string;
+export interface IProductModalView extends IProductView {
   description: HTMLElement;
-  image: HTMLImageElement;
-  title: HTMLElement;
-  category: HTMLElement;
-  price: HTMLElement;
   toBasketBtn: HTMLButtonElement;
   addToBasket():void;
+  changeButtonState():void;
 }

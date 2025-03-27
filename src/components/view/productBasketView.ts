@@ -1,16 +1,13 @@
 import { IProductBasketView } from "../../types/view/productBasketView";
 import { IEvents } from "../base/events";
-import { View } from "./view";
+import { ProductView } from "./productView";
 
-class ProductBasketView extends View implements IProductBasketView {
-  id: string;
-  productNumber: HTMLElement;
-  title: HTMLElement;
-  price: HTMLElement;
-  deletBtn: HTMLButtonElement;
+class ProductBasketView extends ProductView implements IProductBasketView {
+  private _productNumber: HTMLElement;
+  private _deletBtn: HTMLButtonElement;
 
   constructor(productId:string, eventEmmiter:IEvents) {
-    super(null, eventEmmiter);
+    super(productId, eventEmmiter);
   }
 
   deleteFromBasket(): void {
@@ -28,4 +25,21 @@ class ProductBasketView extends View implements IProductBasketView {
   updateView(): void {
     
   }
+
+	public get productNumber(): HTMLElement {
+		return this._productNumber;
+	}
+
+	public set productNumber(value: HTMLElement) {
+		this._productNumber = value;
+	}
+
+	public get deletBtn(): HTMLButtonElement {
+		return this._deletBtn;
+	}
+
+	public set deletBtn(value: HTMLButtonElement) {
+		this._deletBtn = value;
+	}
+
 }

@@ -3,8 +3,6 @@ interface IOrder {
   email: string;
   phone: string;
   address: string;
-  get total(): number;
-  items: IProductsList;
   validate(): string|null;
 }
 
@@ -13,5 +11,5 @@ interface OrderParam {
   email: string;
   phone: string;
   address: string;
-  items: IProductsList;
+  items: string[];
 }

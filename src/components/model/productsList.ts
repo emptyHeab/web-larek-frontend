@@ -1,5 +1,5 @@
 class ProductsList implements IProductsList {
- products: IProduct[];
+ private _products: IProduct[];
  
  addProduct(product: IProduct): void {
    
@@ -9,11 +9,20 @@ class ProductsList implements IProductsList {
    
  }
 
- containProduct(id:number): boolean {
-   return false;
- }
+  containProduct(id:number): boolean {
+    return false;
+  }
 
- get length(): number {
-  return this.products.length;
- }
+  get length(): number {
+    return this.products.length;
+  }
+
+	public get products(): IProduct[] {
+		return this._products;
+	}
+
+	public set products(value: IProduct[]) {
+		this._products = value;
+	}
+
 }

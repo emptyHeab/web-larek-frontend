@@ -3,7 +3,7 @@ import { IProductsListView } from "../../types/view/productsListView";
 import { IEvents } from "../base/events";
 
 class ProductsListView extends View implements IProductsListView {
-  productsPlace: HTMLElement;
+  private _productsPlace: HTMLElement;
 
   constructor(eventEmmiter:IEvents) {
     super(null, eventEmmiter);
@@ -24,4 +24,13 @@ class ProductsListView extends View implements IProductsListView {
   addListeners(): void {
     
   }
+
+	public get productsPlace(): HTMLElement {
+		return this._productsPlace;
+	}
+
+	public set productsPlace(value: HTMLElement) {
+		this._productsPlace = value;
+	}
+
 }

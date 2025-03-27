@@ -1,10 +1,8 @@
+import { IProductView } from "./productView";
 import { IView } from "./view";
 
-export interface IProductBasketView extends IView{
-  id: string;
+export interface IProductBasketView extends IProductView{
   productNumber: HTMLElement;
-  title: HTMLElement;
-  price: HTMLElement;
   deletBtn: HTMLButtonElement;
   deleteFromBasket(): void;
 }

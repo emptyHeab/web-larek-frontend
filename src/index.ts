@@ -11,23 +11,31 @@ function subscribe(view:IView, eventEmmiter:IEvents) {
 
 }
 
-function openModalHandler(content:HTMLElement) {
+function openModalHandler(modalContent:string) {
 
 }
 
-function makeOrderHandler(basket:IProductBasket): void {
+function setModalContent(modalContent:string) {
 
 }
 
-function addToBasketHandler(product:IProduct): void {
+function closeModalHandler() {
+
+}
+
+function addToBasketHandler(productId:string): void {
   
 }
 
-function deleteFromBasketHandler(product:IProduct): void {
+function deleteFromBasketHandler(productId:string): void {
   
 }
 
 function inputChangedHandler(input:HTMLInputElement): void {
+  
+}
+
+function payForOrderHandler(): void {
   
 }
 

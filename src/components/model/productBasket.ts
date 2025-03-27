@@ -1,7 +1,7 @@
 export class ProductBasket implements IProductBasket {
-  products: IProductsList;
+  private _products: IProductsList;
 
-  constructor(productList:IProductsList){
+  constructor(productList:IProductsList) {
     
   }
 
@@ -11,6 +11,10 @@ export class ProductBasket implements IProductBasket {
   
   deleteProduct(productId:string): void {
 
+  }
+
+  deleteAllProducts(): void {
+    
   }
 
   isProductInBasket(productId:string): boolean {
@@ -24,4 +28,12 @@ export class ProductBasket implements IProductBasket {
   get summ(): number {
     return 0;
   }
+
+  public get products(): IProductsList {
+		return this._products;
+	}
+
+	public set products(value: IProductsList) {
+		this._products = value;
+	}
 }

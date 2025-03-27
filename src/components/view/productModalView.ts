@@ -1,22 +1,21 @@
-import { View } from "./view";
 import { IProductModalView } from "../../types/view/productModalView";
 import { IEvents } from "../base/events";
+import { ProductView } from "./productView";
 
-class ProductModalView extends View implements IProductModalView {
-  id: string;
-  description: HTMLElement;
-  image: HTMLImageElement;
-  title: HTMLElement;
-  category: HTMLElement;
-  price: HTMLElement;
-  toBasketBtn: HTMLButtonElement;
+class ProductModalView extends ProductView implements IProductModalView {
+  private _description: HTMLElement;
+  private _toBasketBtn: HTMLButtonElement;
 
   constructor(productId:string, eventEmmiter:IEvents) {
-    super(null, eventEmmiter);
+    super(productId, eventEmmiter);
   }
 
   addToBasket(): void {
 
+  }
+
+  changeButtonState(): void {
+    
   }
 
   render(): HTMLElement {
@@ -30,4 +29,21 @@ class ProductModalView extends View implements IProductModalView {
   updateView(): void {
     
   }
+
+	public get description(): HTMLElement {
+		return this._description;
+	}
+
+	public set description(value: HTMLElement) {
+		this._description = value;
+	}
+
+	public get toBasketBtn(): HTMLButtonElement {
+		return this._toBasketBtn;
+	}
+
+	public set toBasketBtn(value: HTMLButtonElement) {
+		this._toBasketBtn = value;
+	}
+
 }

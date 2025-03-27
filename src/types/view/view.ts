@@ -5,5 +5,4 @@ export interface IView {
   target: HTMLElement;
   render(): HTMLElement;
   updateView(): void;
-  addListeners(): void;
 }

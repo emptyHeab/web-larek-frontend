@@ -1,10 +1,6 @@
-import { IView } from "./view";
+import { View } from "../../components/view/view";
 
-export interface IBasketView extends IView{
-  basketList: HTMLUListElement;
-  total:HTMLElement;
-  makeOrderBtn:HTMLButtonElement;
-  basketIcon: HTMLElement;
-  makeOrder(): void;
+export interface IBasketView extends View{
+  icon: HTMLElement;
   openModal(): void;
 }
