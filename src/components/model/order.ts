@@ -32,7 +32,6 @@ export class Order implements IOrder {
 		this._phone = value;
 	}
 
-  
 	public get address(): string {
 		return this._address;
 	}

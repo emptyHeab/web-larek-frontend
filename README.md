@@ -73,10 +73,9 @@ yarn build
 - email: string - email.
 - phone: string - номер телефона.
 - address: string - адрес.
-- items: string[] - список id продуктов в заказе;
 - constructor({payment, email, phone, address, items}:OrderParam) -  принимает {}, реализующий интерфейс OrderParam. Инициализирует поля.
 - validate(): string|null - проверяет данные на валидность, в случае ошибки, возвращает имя инпута с ошибкой.
-- get total() - возвращает длинну items.
+- get total() - возвращает сумму заказа.
 
 ### ProductBasket - реализует интерфейс IProductBasket. Используется для реализации логики корзины для продуктов.
 - products: IProductsList - список продуктов, хранящихся в корзине.
@@ -117,6 +116,7 @@ yarn build
 
 ### BasketView - расширяет абстрактный класс View. Реализует интерфейс IBasketView. Используется для реализации отображения корзины продуктов.
 - icon: HTMLElement - иконка корзины.
+- productsQuantity: HTMLElement - кол-во продуктов в корзине.
 - constructor(eventEmmiter:IEvents) - иницализирует поля, вешает обработчики событий.
 - openModal(): void - генерирует событие "openModal".
 
@@ -167,24 +167,18 @@ yarn build
 - addListeners(): void - добовляет слушатели событий на представление продукта.
 - updateView(): void - обновляет представление продукта.
 
-### ProductModalView - расширяет абстрактный класс View. Реализует интерфейс IProductModalView. Используется для реализации отображения продуктов для модального окна.
+### ProductModalView - расширяет абстрактный класс View и ProductView. Реализует интерфейс IProductModalView. Используется для реализации отображения продуктов для модального окна.
 - description: HTMLElement - описание продукта.
 - toBasketBtn: HTMLButtonElement - кнопка добавления в корзину.
 - constructor(productId:string, eventEmmiter:IEvents) - иницализирует поля, вешает обработчики событий.
 - addToBasket(): void - генерирует событие "addToBasket".
 - changeButtonState(): void - изменяет состояние toBasketBtn.
-- render(): HTMLElement - возвращает HTML разметку представления продукта дял модального окна.
-- addListeners(): void - добовляет слушатели событий на представление продукта дял модального окна.
-- updateView(): void - обновляет представление продукта дял модального окна.
 
-### ProductBasketView - расширяет абстрактный класс View. Реализует интерфейс IProductModalView. Используется для реализации отображения продуктов для корзины.
+### ProductBasketView - расширяет абстрактный класс View и ProductView. Реализует интерфейс IProductBasketView. Используется для реализации отображения продуктов для корзины.
 - productNumber: HTMLElement - номер продукта в корзине.
 - deletBtn: HTMLButtonElement - кнопка удаления продукта из корзины.
 - constructor(productId:string, eventEmmiter:IEvents) - иницализирует поля, вешает обработчики событий.
 - deleteFromBasket(): void - генерирует событие "deleteFromBasket".
-- render(): HTMLElement - возвращает HTML разметку представления продукта дял корзины.
-- addListeners(): void - добовляет слушатели событий на представление продукта дял корзины.
-- updateView(): void - обновляет представление продукта дял корзины.
 
 ### ProductsListView - расширяет абстрактный класс View. Реализует интерфейс IProductsListView. Используется для реализации отображения списка продуктов. 
 - productsPlace: HTMLElement - список карточек в разметке. 
@@ -199,8 +193,8 @@ yarn build
 - openModalHandler(modalContent:string) - принимает имя класса представления с которым будет открыто модальное окно. Открывает модальное окно. Обрабатывает событие "openModal". Генерирует событие "modal: opend".
 - setModalContent(modalContent:string) - принимает имя класса представления который будет отображаться в модальном окне. Обрабатывает событие "changeModalContent". Генерирует событие "modal: contentChanged".
 - closeModalHandler() - закрывает модальное окно. Обрабатывает событие "closeModal". Генерирует событие "modal: closed".
-- addToBasketHandler(productId:string): void - принимает id продукта. Добавляет продукт в корзину. Генерирует событие "basketModalView: changed" и "productModalView: changed". 
-- deleteFromBasketHandler(productId:string): void - принимает id продукта. Удаляет продукт из корзины. Генерирует событие "basketModalView: changed" и "productModalView: changed".
+- addToBasketHandler(productId:string): void - принимает id продукта. Добавляет продукт в корзину. Генерирует событие "basketModalView: changed", "productModalView: changed" и "basketView: changed". 
+- deleteFromBasketHandler(productId:string): void - принимает id продукта. Удаляет продукт из корзины. Генерирует событие "basketModalView: changed", "productModalView: changed" и "basketView: changed".
 - inputChangedHandler(input:HTMLInputElement): void - поинимает имя инпута в котором произошло изменение. Обрабатывает событие "inputChanged".
 - payForOrderHandler(): void - производит попытку оплаты заказа. Обрабатывает событие "payForOrder".
 - getProducts(api:IApi): Promise&lt;Product[]&gt; - принимает апи, через который будет происходить запрос продуктов. Возвращает сисок продуктов в виде Promise&lt;ProductList&gt;.
@@ -228,6 +222,7 @@ const state = init();
 - "deleteFromBasket" - удаление продукта из корзины. Для presenter'а.
 - "modal: contentChanged" - изменение контента модального окна. Для представления.
 - "basketModalView: changed" - изменение представления корзины для модального окна. Для представления.
+- "basketView: changed" - изменение представления корзины. Для представления.
 - "productModalView: changed" - изменение представления продукта для модального окна. Для представления.
 - "order: posted" - успешный POST запрос заказа. Для представления.
 - "modal: opend" - открытие модального окна. Для представления.

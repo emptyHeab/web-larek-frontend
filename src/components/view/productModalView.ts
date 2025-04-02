@@ -18,15 +18,7 @@ class ProductModalView extends ProductView implements IProductModalView {
     
   }
 
-  render(): HTMLElement {
-    return null
-  }
-
   addListeners(): void {
-    
-  }
-  
-  updateView(): void {
     
   }
 

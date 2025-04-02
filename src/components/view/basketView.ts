@@ -4,6 +4,7 @@ import { IEvents } from "../base/events";
 
 export class BasketView extends View implements IBasketView {
   private _icon: HTMLElement;
+  private _productsQuantity: HTMLElement;
 
   constructor(eventEmmiter:IEvents) {
     super(null, eventEmmiter);
@@ -28,4 +29,13 @@ export class BasketView extends View implements IBasketView {
 	public set icon(value: HTMLElement) {
 		this._icon = value;
 	}
+
+	public get productsQuantity(): HTMLElement {
+		return this._productsQuantity;
+	}
+
+	public set productsQuantity(value: HTMLElement) {
+		this._productsQuantity = value;
+	}
+
 }
