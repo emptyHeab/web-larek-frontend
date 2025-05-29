@@ -1,14 +1,17 @@
-type ProductData = {
+import { IOrder } from "./order";
+import { IProductBasket } from "./productBasket";
+
+export type ProductData = {
   total:number;
   items:IProduct[];
 }
 
-type OrderData = {
+export type OrderResponseData = {
   id:string;
   total:number;
 }
 
-interface IApi {
+export interface IApi {
   getProducts(): Promise<ProductData>;
-  postOrder(data:IOrder): Promise<OrderData>;
+  postOrder(data:IOrder, basket:IProductBasket): Promise<OrderResponseData>;
 }

@@ -1,15 +1,14 @@
-interface IOrder {
-  payment: string;
-  email: string;
-  phone: string;
-  address: string;
-  validate(): string|null;
+import { ModelWithEvents } from "../../components/model/modelWithEvents";
+
+export interface IOrder extends ModelWithEvents, OrderData{
+  validate(inputs:Record<string, string>): number;
 }
 
-interface OrderParam {
+export interface OrderData {
   payment: string;
   email: string;
   phone: string;
   address: string;
-  items: string[];
 }
+
+export type OrderFields = keyof OrderData;
